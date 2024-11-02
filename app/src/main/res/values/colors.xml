@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="primaryColor">#FFD54F</color> <!-- رنگ زرد روشن -->
+    <color name="secondaryColor">#333333</color> <!-- رنگ تیره -->
+    <color name="backgroundColor">#D3CEB7</color> <!-- رنگ سفید -->
+    <color name="textColor">#333333</color> <!-- رنگ تیره برای متن -->
+    <color name="buttonColor">#FFA000</color> <!-- رنگی برای دکمه‌ها (کمی تیره‌تر از رنگ اصلی) -->
+    <color name="primaryColorVariant">#FFA000</color> <!-- رنگ زرد تیره‌تر برای رنگ اصلی -->
+
+
 </resources>
