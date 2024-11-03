@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // تنظیم Toolbar به عنوان ActionBar
+//         تنظیم Toolbar به عنوان ActionBar
         setSupportActionBar(binding.toolbar)
 
         // تنظیم NavController
