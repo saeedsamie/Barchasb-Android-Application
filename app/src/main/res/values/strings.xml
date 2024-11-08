@@ -15,4 +15,11 @@
     <string name="testing">Testing</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="task_title_template">تبدیل صوت به متن</string>
+    <string name="task_description_template">متن را بر اساس صوتی که میشنوید اصلاح کنید</string>
+    <string name="task_ID_template">555</string>
+    <string name="username_1">کاربر کاربرزاده</string>
+    <string name="username_2">یوزر یوزریان</string>
+    <string name="username_3">کاربر کاربرنژاد</string>
+    <string name="username_4">یوزر یوزرپور</string>
 </resources>

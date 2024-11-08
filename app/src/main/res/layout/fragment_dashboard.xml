@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="کاربر کاربرزاده"
+                    android:text="@string/username_1"
                     android:textColor="@color/backgroundColor"
                     android:textSize="16sp" />
             </LinearLayout>

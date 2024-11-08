@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="نام و نام خانوادگی"
+                    android:text="@string/username_1"
                     android:textColor="@color/backgroundColor"
                     android:textSize="18sp" />
 
@@ -197,8 +197,8 @@
         android:id="@+id/editProfileButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/buttonColor"
         android:layout_margin="15dp"
+        android:backgroundTint="@color/buttonColor"
         android:text="ویرایش پروفایل"
         android:textColor="@color/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
