@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.barchasb.R
 import com.example.barchasb.databinding.FragmentUserProfileBinding
 
 class UserProfileFragment : Fragment() {
@@ -17,6 +19,10 @@ class UserProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUserProfileBinding.inflate(inflater, container, false)
+
+        binding.signOutButton.setOnClickListener {
+            findNavController().navigate(R.id.action_userProfileFragment_to_loginFragment)
+        }
         return binding.root
     }
 

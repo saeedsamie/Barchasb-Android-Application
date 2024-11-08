@@ -26,7 +26,13 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // ناوبری به صفحه Task List
-        binding.viewTasksButton.setOnClickListener {
+        binding.viewNewTaskButton.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_taskListFragment)
+        }
+        binding.viewAllDoneTasksButton.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_taskListFragment)
+        }
+        binding.viewTodayDoneTasksButton.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_taskListFragment)
         }
 

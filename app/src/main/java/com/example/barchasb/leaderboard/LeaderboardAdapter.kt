@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.barchasb.databinding.ItemLeaderboardBinding
 
-data class LeaderboardItem(val username: String, val score: Int)
+data class LeaderboardItem(val username: String, val score: String)
 
 class LeaderboardAdapter(private val leaderboardItems: List<LeaderboardItem>) :
     RecyclerView.Adapter<LeaderboardAdapter.LeaderboardViewHolder>() {

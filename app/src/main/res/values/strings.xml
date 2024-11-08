@@ -19,7 +19,20 @@
     <string name="task_description_template">متن را بر اساس صوتی که میشنوید اصلاح کنید</string>
     <string name="task_ID_template">555</string>
     <string name="username_1">کاربر کاربرزاده</string>
+    <string name="username_1_score">100</string>
     <string name="username_2">یوزر یوزریان</string>
+    <string name="username_2_score">82</string>
     <string name="username_3">کاربر کاربرنژاد</string>
+    <string name="username_3_score">67</string>
     <string name="username_4">یوزر یوزرپور</string>
+    <string name="username_4_score">23</string>
+    <string name="username_hint">نام کاربری</string>
+    <string name="password_hint">رمز عبور</string>
+    <string name="login_button_string">ورود</string>
+    <string name="dont_have_account_button_string">حساب کاربری ندارید؟ ثبت‌نام کنید</string>
+    <string name="languages_title_string">زبان‌ها</string>
+    <string name="user_languages_template">فارسی، انگلیسی</string>
+    <string name="user_phone_number">09123456789</string>
+    <string name="user_age_template">25 سال</string>
+    <string name="sign_out_button_string">خروج از حساب کاربری</string>
 </resources>

@@ -2,8 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
-    android:padding="16dp">
+    android:background="@color/backgroundColor">
 
     <ImageView
         android:id="@+id/logoImage"
@@ -12,7 +11,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:contentDescription="App Logo"
+        android:importantForAccessibility="no"
         android:src="@drawable/ic_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,11 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:alignmentMode="alignMargins"
         android:columnCount="2"
         android:rowCount="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/logoImage">
 
         <!-- کارت عکس پروفایل کاربر (بالا سمت چپ) -->
         <androidx.cardview.widget.CardView
@@ -89,7 +86,7 @@
                     android:id="@+id/userAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="سن: ۲۵"
+                    android:text="@string/user_age_template"
                     android:textColor="@color/backgroundColor"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -114,10 +111,17 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="امتیاز"
+                    android:textColor="@color/textColor"
+                    android:textSize="18sp" />
+
+                <TextView
                     android:id="@+id/userPoints"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="امتیاز: ۱۵۰"
+                    android:text="@string/username_1_score"
                     android:textColor="@color/textColor"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -146,20 +150,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="شماره تلفن: 09123456789"
+                    android:text="@string/user_phone_number"
                     android:textColor="@color/textColor"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/userEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ایمیل کاربر"
-                    android:textColor="@color/textColor"
-                    android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/signOutButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/secondaryColor"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="1dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_out_button_string"
+                    android:textColor="@color/backgroundColor"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- کارت زبان‌ها (پایین سمت راست) -->
         <androidx.cardview.widget.CardView
@@ -180,10 +204,18 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/laguagesTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/languages_title_string"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp" />
+
+                <TextView
                     android:id="@+id/userLanguages"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="زبان‌ها: فارسی، انگلیسی"
+                    android:text="@string/user_languages_template"
                     android:textColor="@color/textColor"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -192,15 +224,4 @@
 
     </GridLayout>
 
-    <!-- دکمه ویرایش پروفایل (زیر کارت‌ها) -->
-    <Button
-        android:id="@+id/editProfileButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:backgroundTint="@color/buttonColor"
-        android:text="ویرایش پروفایل"
-        android:textColor="@color/backgroundColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

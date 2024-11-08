@@ -21,10 +21,10 @@ class LeaderboardFragment : Fragment() {
         _binding = FragmentLeaderboardBinding.inflate(inflater, container, false)
 
         val users = listOf(
-            LeaderboardItem(getString(R.string.username_1), 100),
-            LeaderboardItem(getString(R.string.username_2), 90),
-            LeaderboardItem(getString(R.string.username_3), 80),
-            LeaderboardItem(getString(R.string.username_4), 50)
+            LeaderboardItem(getString(R.string.username_1), getString(R.string.username_1_score)),
+            LeaderboardItem(getString(R.string.username_2), getString(R.string.username_2_score)),
+            LeaderboardItem(getString(R.string.username_3), getString(R.string.username_3_score)),
+            LeaderboardItem(getString(R.string.username_4), getString(R.string.username_4_score))
         )
 
         val leaderboardAdapter = LeaderboardAdapter(users)
