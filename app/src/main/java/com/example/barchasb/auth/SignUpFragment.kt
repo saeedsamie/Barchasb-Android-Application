@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.barchasb.R
@@ -13,6 +14,19 @@ class SignUpFragment : Fragment() {
 
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // ایجاد یک Callback برای مدیریت دکمه بازگشت
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+            }
+        }
+
+        // اضافه کردن Callback به سیستم بازگشت
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +45,7 @@ class SignUpFragment : Fragment() {
         }
 
         binding.signupButton.setOnClickListener {
-            // کد ثبت‌نام کاربر
+            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         }
     }
 

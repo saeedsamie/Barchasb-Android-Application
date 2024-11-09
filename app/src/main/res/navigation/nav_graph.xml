@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_taskListFragment_to_asrTaskFragment"
             app:destination="@id/asrTaskFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 
     <fragment
