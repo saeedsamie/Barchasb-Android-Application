@@ -1,13 +1,20 @@
 package com.example.barchasb.tasks
 
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.barchasb.R
+import kotlinx.android.parcel.Parcelize
 
-data class Task(val id: Int, val title: String, val description: String)
+@Parcelize
+data class Task(
+    val taskID: String,
+    val taskTitle: String,
+    val taskDescription: String
+) : Parcelable
 
 class TaskListAdapter(
     private val tasks: List<Task>,
@@ -20,9 +27,9 @@ class TaskListAdapter(
         val description = itemView.findViewById<TextView>(R.id.taskDescription)
 
         fun bind(task: Task) {
-            task_id.text = String.format("%d", task.id)
-            title.text = task.title
-            description.text = task.description
+            task_id.text = task.taskID
+            title.text = task.taskTitle
+            description.text = task.taskDescription
             itemView.setOnClickListener { onTaskClicked(task) }
         }
     }

@@ -37,4 +37,6 @@
     <string name="sign_out_button_string">خروج از حساب کاربری</string>
     <string name="skip_button_string">رد کردن</string>
     <string name="leaderboard_title_string">جدول امتیازات</string>
+    <string name="asr_text_template">به گزارش ورزش سه جواد نکونام پس از دیدار شب گذشته مقابل آلومینیم در کنفرانس خبری اضهاراتی در مورد قضاوت سید رضا مهدوی داور مسابقه انجام داد و صحبت های تندی داشت که پیش بینی میشد با واکنش کمیته انظباتی فدراسیون فوتبال مواجه شود</string>
+    <string name="exit_button_string">خروج</string>
 </resources>

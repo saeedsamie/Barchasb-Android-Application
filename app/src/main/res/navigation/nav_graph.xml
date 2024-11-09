@@ -62,18 +62,21 @@
         android:label="Task List"
         tools:layout="@layout/fragment_task_list">
         <action
-            android:id="@+id/action_taskListFragment_to_taskDetailsFragment"
-            app:destination="@id/taskDetailsFragment" />
+            android:id="@+id/action_taskListFragment_to_asrTaskFragment"
+            app:destination="@id/asrTaskFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/taskDetailsFragment"
+        android:id="@+id/asrTaskFragment"
         android:name="com.example.barchasb.tasks.ASRTaskFragment"
         android:label="Task Details"
         tools:layout="@layout/fragment_asr_task">
         <action
-            android:id="@+id/taskDetailsFragment_to_action_taskListFragment"
+            android:id="@+id/asrTaskFragment_to_action_taskListFragment"
             app:destination="@id/taskListFragment" />
+        <action
+            android:id="@+id/action_asrTaskFragment_self"
+            app:destination="@id/asrTaskFragment" />
     </fragment>
 
     <fragment

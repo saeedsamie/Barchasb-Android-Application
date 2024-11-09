@@ -25,52 +25,52 @@ class TaskListFragment : Fragment() {
 
         val tasks = listOf(
             Task(
-                111,
+                "111",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                222,
+                "222",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                333,
+                "333",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                444,
+                "444",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                555,
+                "555",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                666,
+                "666",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                777,
+                "777",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                888,
+                "888",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                999,
+                "999",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
             Task(
-                1000,
+                "1000",
                 getString(R.string.task_title_template),
                 getString(R.string.task_description_template)
             ),
@@ -79,13 +79,20 @@ class TaskListFragment : Fragment() {
             )
 
         taskListAdapter = TaskListAdapter(tasks) { task ->
-            findNavController().navigate(R.id.action_taskListFragment_to_taskDetailsFragment)
+            navigateToASRTask(task)
         }
 
         binding.taskRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.taskRecyclerView.adapter = taskListAdapter
 
         return binding.root
+    }
+
+    private fun navigateToASRTask(task: Task) {
+        val bundle = Bundle().apply {
+            putParcelable("task", task) // ارسال شیء Task به عنوان Parcelable
+        }
+        findNavController().navigate(R.id.action_taskListFragment_to_asrTaskFragment, bundle)
     }
 
     override fun onDestroyView() {
