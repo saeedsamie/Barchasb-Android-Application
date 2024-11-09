@@ -68,9 +68,9 @@
 
     <fragment
         android:id="@+id/taskDetailsFragment"
-        android:name="com.example.barchasb.tasks.TaskDetailsFragment"
+        android:name="com.example.barchasb.tasks.ASRTaskFragment"
         android:label="Task Details"
-        tools:layout="@layout/fragment_task_details">
+        tools:layout="@layout/fragment_asr_task">
         <action
             android:id="@+id/taskDetailsFragment_to_action_taskListFragment"
             app:destination="@id/taskListFragment" />

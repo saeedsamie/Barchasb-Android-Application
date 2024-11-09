@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.barchasb.databinding.FragmentTaskDetailsBinding
+import com.example.barchasb.databinding.FragmentAsrTaskBinding
 
-class TaskDetailsFragment : Fragment() {
+class ASRTaskFragment : Fragment() {
 
-    private var _binding: FragmentTaskDetailsBinding? = null
+    private var _binding: FragmentAsrTaskBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentTaskDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentAsrTaskBinding.inflate(inflater, container, false)
 
         binding.submitButton.setOnClickListener {
             Toast.makeText(context, "انجام شد", Toast.LENGTH_SHORT).show()

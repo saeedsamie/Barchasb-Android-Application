@@ -35,4 +35,6 @@
     <string name="user_phone_number">09123456789</string>
     <string name="user_age_template">25 سال</string>
     <string name="sign_out_button_string">خروج از حساب کاربری</string>
+    <string name="skip_button_string">رد کردن</string>
+    <string name="leaderboard_title_string">جدول امتیازات</string>
 </resources>
