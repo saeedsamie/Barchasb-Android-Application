@@ -7,6 +7,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -57,6 +58,17 @@ class ASRTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val emotions = resources.getStringArray(R.array.emotion_options)
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, emotions)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.emotionSpinner.adapter = adapter
+
+        val languages = resources.getStringArray(R.array.language_options)
+        val languageAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, languages)
+        languageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.languageSpinner.adapter = languageAdapter
 
         initializeMediaPlayer()
 
