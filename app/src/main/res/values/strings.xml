@@ -50,4 +50,11 @@
         <item>فارسی</item>
         <item>دیگر زبان‌ها</item>
     </string-array>
+    <string-array name="education_options">
+        <item>زیر دیپلم</item>
+        <item>دیپلم</item>
+        <item>لیسانس</item>
+        <item>فوق لیسانس</item>
+        <item>دکتری</item>
+    </string-array>
 </resources>
