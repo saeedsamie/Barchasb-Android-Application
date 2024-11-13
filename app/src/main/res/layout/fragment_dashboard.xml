@@ -21,11 +21,12 @@
     <GridLayout
         android:id="@+id/dashboardGrid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:columnCount="2"
         android:rowCount="2"
-        app:layout_constraintTop_toBottomOf="@+id/logoImage">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoImage">
 
         <!-- کاشی خوش‌آمدگویی -->
         <androidx.cardview.widget.CardView
@@ -37,8 +38,7 @@
             android:layout_margin="8dp"
             app:cardBackgroundColor="@color/secondaryColor"
             app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:layout_constraintDimensionRatio="1:1">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,14 +72,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:text="محموع امتیازات"
                     android:textColor="@color/textColor"
                     android:textSize="16sp" />
@@ -108,15 +106,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="1:1">
 
                 <TextView
                     android:id="@+id/todayTaskCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:text="تسک های انجام شده امروز"
                     android:textColor="@color/textColor"
                     android:textSize="16sp" />
@@ -145,7 +142,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -153,7 +149,6 @@
                     android:id="@+id/totalTaskCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:text="کل تسک های انجام شده"
                     android:textColor="@color/textColor"
                     android:textSize="16sp" />
@@ -183,7 +178,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
