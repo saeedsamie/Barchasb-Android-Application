@@ -11,38 +11,48 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Task(
-    val taskID: String,
-    val taskTitle: String,
-    val taskDescription: String
+    val taskID: String, val taskTitle: String, val taskDescription: String, val type: TaskType
 ) : Parcelable
+
+enum class TaskType {
+    ASR, WORD_OCR
+}
+
 
 class TaskListAdapter(
     private val tasks: List<Task>,
-    private val onTaskClicked: (Task) -> Unit
+    private val onTaskClick: (Task) -> Unit
 ) : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
-    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val task_id = itemView.findViewById<TextView>(R.id.taskID)
-        val title = itemView.findViewById<TextView>(R.id.taskTitle)
-        val description = itemView.findViewById<TextView>(R.id.taskDescription)
-
-        fun bind(task: Task) {
-            task_id.text = task.taskID
-            title.text = task.taskTitle
-            description.text = task.taskDescription
-            itemView.setOnClickListener { onTaskClicked(task) }
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_task, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
         return TaskViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(tasks[position])
+        val task = tasks[position]
+        holder.bind(task)
+        holder.itemView.setOnClickListener { onTaskClick(task) }
     }
 
-    override fun getItemCount(): Int = tasks.size
+    override fun getItemCount() = tasks.size
+
+    class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val idTextView: TextView = itemView.findViewById(R.id.taskID)
+        private val titleTextView: TextView = itemView.findViewById(R.id.taskTitle)
+        private val descriptionTextView: TextView = itemView.findViewById(R.id.taskDescription)
+
+        fun bind(task: Task) {
+            idTextView.text = task.taskID
+            titleTextView.text = task.taskTitle
+            descriptionTextView.text = task.taskDescription
+        }
+
+        private fun getTaskType(type: TaskType): String {
+            return when (type) {
+                TaskType.ASR -> "ASR Task"
+                TaskType.WORD_OCR -> "Word OCR Task"
+            }
+        }
+    }
 }

@@ -17,6 +17,7 @@ class TaskListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var taskListAdapter: TaskListAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,68 +33,53 @@ class TaskListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTaskListBinding.inflate(inflater, container, false)
 
+        // لیست تسک‌ها
         val tasks = listOf(
             Task(
-                "111",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "222",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "333",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "444",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "555",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "666",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "777",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "888",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "999",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-            Task(
-                "1000",
-                getString(R.string.task_title_template),
-                getString(R.string.task_description_template)
-            ),
-
-
+                "199123", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
+            ), Task(
+                "211",
+                "استخراج متن کلمه از تصویر",
+                "متن کلمه در تصویر را بنویسید",
+                TaskType.WORD_OCR
+            ), Task(
+                "133243", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
+            ), Task(
+                "201",
+                "استخراج متن کلمه از تصویر",
+                "متن کلمه در تصویر را بنویسید",
+                TaskType.WORD_OCR
+            ), Task(
+                "266",
+                "استخراج متن کلمه از تصویر",
+                "متن کلمه در تصویر را بنویسید",
+                TaskType.WORD_OCR
+            ), Task(
+                "266332",
+                "استخراج متن کلمه از تصویر",
+                "متن کلمه در تصویر را بنویسید",
+                TaskType.WORD_OCR
+            ), Task(
+                "264426",
+                "استخراج متن کلمه از تصویر",
+                "متن کلمه در تصویر را بنویسید",
+                TaskType.WORD_OCR
+            ), Task(
+                "111357", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
+            ), Task(
+                "135321", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
+            ), Task(
+                "152235", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
             )
+        )
 
+        // تنظیم آداپتور
         taskListAdapter = TaskListAdapter(tasks) { task ->
-            navigateToASRTask(task)
+            navigateToTask(task)
         }
 
         binding.taskRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -102,11 +88,19 @@ class TaskListFragment : Fragment() {
         return binding.root
     }
 
-    private fun navigateToASRTask(task: Task) {
+    private fun navigateToTask(task: Task) {
         val bundle = Bundle().apply {
-            putParcelable("task", task) // ارسال شیء Task به عنوان Parcelable
+            putParcelable("task", task)
         }
-        findNavController().navigate(R.id.action_taskListFragment_to_asrTaskFragment, bundle)
+        when (task.type) {
+            TaskType.ASR -> findNavController().navigate(
+                R.id.action_taskListFragment_to_asrTaskFragment, bundle
+            )
+
+            TaskType.WORD_OCR -> findNavController().navigate(
+                R.id.action_taskListFragment_to_wordOcrTaskFragment, bundle
+            )
+        }
     }
 
     override fun onDestroyView() {

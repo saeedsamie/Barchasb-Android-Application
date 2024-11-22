@@ -32,9 +32,10 @@
         <TextView
             android:id="@+id/taskDescription"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="@string/task_description_template"
             android:textColor="@color/textColor"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -39,6 +39,8 @@
     <string name="leaderboard_title_string">جدول امتیازات</string>
     <string name="asr_text_template">به گزارش ورزش سه جواد نکونام پس از دیدار شب گذشته استقلال مقابل آلومیمراک در کنفرانس خبری اظهاراتی علیه قضاوت سید رضا مهدوی داور مسابقه انجام داد و صحبت های تندی داشت که پیش بینی می شد با واکنش کمیته انضباطی فدراسیون فوتبال مواجه شود</string>
     <string name="exit_button_string">خروج</string>
+    <string name="word_ocr_edittext_hint">کلمه موجود در تصویر</string>
+    <string name="target_word_ocr_image_describtion">target word ocr</string>
     <string-array name="emotion_options">
         <item>عادی</item>
         <item>ناراحت</item>
