@@ -27,21 +27,33 @@ class ASRTaskFragment : Fragment() {
     private var isMediaPlayerReleased = true // کنترل وضعیت آزادسازی MediaPlayer
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAsrTaskBinding.inflate(inflater, container, false)
 
-        // دریافت شیء Task از arguments
         val task = arguments?.getParcelable<Task>("task")
-        binding.taskID.text = task?.taskID ?: "No ID" // نمایش taskID
-        binding.taskTitle.text = task?.taskTitle ?: "No Name" // نمایش taskTitle
+        binding.taskID.text = task?.taskID ?: "شناسه ندارد" // نمایش taskID
+        binding.taskTitle.text = task?.taskTitle ?: "عنوان ندارد" // نمایش taskTitle
         binding.taskDescription.text =
-            task?.taskDescription ?: "No Description" // نمایش taskDescription
+            task?.taskDescription ?: "توضیحی ندارد" // نمایش taskDescription
+        setupButtons()
+
+        return binding.root
+    }
+
+    private fun setupButtons() {
 
         binding.submitButton.setOnClickListener {
-            Toast.makeText(context, "انجام شد", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.asrTaskFragment_to_action_taskListFragment)
+            val inputText = binding.editableText.text.toString()
+            if (inputText.isNotBlank()) {
+                // اینجا می‌توانید متن واردشده را ذخیره یا پردازش کنید
+                binding.editableText.setText("")
+                Toast.makeText(context, "ثبت شد!", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.asrTaskFragment_to_action_taskListFragment)
+
+            } else {
+                Toast.makeText(context, "لطفاً متن را وارد کنید!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.skipButton.setOnClickListener {
@@ -51,9 +63,6 @@ class ASRTaskFragment : Fragment() {
         binding.exitButton.setOnClickListener {
             findNavController().navigate(R.id.asrTaskFragment_to_action_taskListFragment)
         }
-
-
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -165,5 +174,10 @@ class ASRTaskFragment : Fragment() {
         mediaPlayer = null
         isMediaPlayerReleased = true // به‌روزرسانی وضعیت پس از آزادسازی
         handler.removeCallbacks(updateSeekBar) // توقف کامل updateSeekBar
+    }
+
+    override fun onPause() {
+        super.onPause()
+        releaseMediaPlayer()
     }
 }
