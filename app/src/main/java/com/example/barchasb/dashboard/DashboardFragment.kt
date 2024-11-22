@@ -20,7 +20,7 @@ class DashboardFragment : Fragment() {
         // ایجاد یک Callback برای مدیریت دکمه بازگشت
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // اینجا هیچ کاری انجام نمی‌دهیم تا دکمه بازگشت غیرفعال شود
+                requireActivity().finish()
             }
         }
 
