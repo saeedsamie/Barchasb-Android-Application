@@ -1,25 +1,36 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Barchasb" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryVariant">@color/primaryColorVariant</item>
-        <item name="colorOnPrimary">@color/backgroundColor</item>
+        <!-- Primary Colors -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_dark_color</item>
+        <item name="colorSecondary">@color/accent_color</item>
+        <item name="colorSecondaryVariant">@color/accent_color</item>
 
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/secondaryColor</item>
-        <item name="colorSecondaryVariant">@color/primaryColor</item>
-        <item name="colorOnSecondary">@color/backgroundColor</item>
+        <!-- Background and Surface -->
+        <item name="android:colorBackground">@color/surface_color</item>
+<!--        <item name="colorBackground">@color/surface_color</item>-->
+        <item name="colorSurface">@color/background_color</item>
 
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Text Colors -->
+        <item name="colorOnPrimary">@color/text_inverse_color</item>
+        <item name="colorOnSecondary">@color/text_inverse_color</item>
+        <item name="colorOnSurface">@color/text_inverse_color</item>
+        <item name="android:textColorPrimary">@color/text_inverse_color</item>
+        <item name="android:textColorSecondary">@color/accent_color</item>
 
-        <!-- Background color -->
-        <item name="android:colorBackground">@color/backgroundColor</item>
-        <item name="colorSurface">@color/backgroundColor</item>
+        <!-- Button Colors -->
+        <item name="buttonStyle">@style/Widget.MyApp.Button.Night</item>
 
-        <!-- Text color -->
-        <item name="android:textColor">@color/textColor</item>
+        <!-- Status Bar and Navigation Bar -->
+        <item name="android:statusBarColor">@color/surface_color</item>
+        <item name="android:navigationBarColor">@color/surface_color</item>
+    </style>
+
+    <!-- Button Style for Night Mode -->
+    <style name="Widget.MyApp.Button.Night" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/primary_dark_color</item>
+        <item name="android:textColor">@color/text_inverse_color</item>
     </style>
 
     <style name="Theme.Barchasb.NoActionBar" parent="Theme.Barchasb">

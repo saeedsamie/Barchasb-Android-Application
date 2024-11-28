@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor">
+    android:background="@color/background_color">
 
     <ImageView
         android:id="@+id/logoImage"
@@ -35,7 +35,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/secondaryColor"
+            app:cardBackgroundColor="@color/primary_dark_color"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -62,7 +62,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/secondaryColor"
+            app:cardBackgroundColor="@color/primary_color"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/username_1"
-                    android:textColor="@color/backgroundColor"
+                    android:textColor="@color/text_primary_color"
                     android:textSize="18sp" />
 
                 <TextView
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user_age_template"
-                    android:textColor="@color/backgroundColor"
+                    android:textColor="@color/text_primary_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -98,7 +98,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/primaryColor"
+            app:cardBackgroundColor="@color/primary_color"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -113,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="امتیاز"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/text_primary_color"
                     android:textSize="18sp" />
 
                 <TextView
@@ -121,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/username_1_score"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/text_primary_color"
                     android:textSize="18sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -133,7 +133,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/primaryColor"
+            app:cardBackgroundColor="@color/primary_color"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -149,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user_phone_number"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/text_primary_color"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -163,7 +163,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/secondaryColor"
+            app:cardBackgroundColor="@color/primary_color"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -178,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sign_out_button_string"
-                    android:textColor="@color/backgroundColor"
+                    android:textColor="@color/text_primary_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -190,7 +190,7 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/primaryColor"
+            app:cardBackgroundColor="@color/primary_color"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
@@ -206,7 +206,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/languages_title_string"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/text_primary_color"
                     android:textSize="16sp" />
 
                 <TextView
@@ -214,7 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/user_languages_template"
-                    android:textColor="@color/textColor"
+                    android:textColor="@color/text_primary_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

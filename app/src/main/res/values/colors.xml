@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary Colors -->
+    <color name="primary_color">#FFCA3A</color>
+    <color name="primary_dark_color">#C7950C</color>
 
-    <color name="primaryColor">#FFD54F</color> <!-- رنگ زرد روشن -->
-    <color name="secondaryColor">#333333</color> <!-- رنگ تیره -->
-    <color name="backgroundColor">#D3CEB7</color> <!-- رنگ سفید -->
-    <color name="textColor">#333333</color> <!-- رنگ تیره برای متن -->
-    <color name="buttonColor">#CC9E00</color> <!-- رنگی برای دکمه‌ها (کمی تیره‌تر از رنگ اصلی) -->
-    <color name="primaryColorVariant">#CC9E00</color> <!-- رنگ زرد تیره‌تر برای رنگ اصلی -->
+    <!-- Background and Surface -->
+    <color name="background_color">#FAF9F5</color>
+    <color name="surface_color">#2A3C44</color>
 
+    <!-- Text Colors -->
+    <color name="text_primary_color">#2A3C44</color>
+    <color name="text_secondary_color">#B38208</color>
+    <color name="text_inverse_color">#FAF9F5</color>
 
+    <!-- Accent and Buttons -->
+    <color name="button_background_color">#FFCA3A</color>
+    <color name="button_text_color">#2A3C44</color>
+    <color name="accent_color">#FFDE70</color>
+    <color name="white">#FFFFFF</color>
 </resources>

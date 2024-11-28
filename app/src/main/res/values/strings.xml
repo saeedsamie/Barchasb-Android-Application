@@ -41,6 +41,8 @@
     <string name="exit_button_string">خروج</string>
     <string name="word_ocr_edittext_hint">کلمه موجود در تصویر</string>
     <string name="target_word_ocr_image_describtion">target word ocr</string>
+    <string name="submit_button_text">تایید</string>
+    <string name="total_score_title_string">محموع امتیازات</string>
     <string-array name="emotion_options">
         <item>عادی</item>
         <item>ناراحت</item>

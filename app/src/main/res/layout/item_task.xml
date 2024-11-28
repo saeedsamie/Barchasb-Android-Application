@@ -9,16 +9,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
+        android:background="@color/primary_color"
         android:gravity="end"
         android:orientation="vertical"
         android:padding="16dp">
+
         <TextView
             android:id="@+id/taskID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/task_ID_template"
-            android:textColor="@color/textColor"
+            android:textColor="@color/text_primary_color"
             android:textSize="12sp" />
 
         <TextView
@@ -26,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/task_title_template"
-            android:textColor="@color/textColor"
+            android:textColor="@color/text_primary_color"
             android:textSize="18sp" />
 
         <TextView
@@ -34,8 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:text="@string/task_description_template"
-            android:textColor="@color/textColor"
-            android:textSize="14sp"
-            />
+            android:textColor="@color/text_primary_color"
+            android:textSize="14sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
