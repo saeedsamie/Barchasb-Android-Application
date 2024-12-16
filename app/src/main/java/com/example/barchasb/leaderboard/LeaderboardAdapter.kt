@@ -14,7 +14,7 @@ class LeaderboardAdapter(private val leaderboardItems: List<LeaderboardItem>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: LeaderboardItem) {
-            binding.username.text = item.username
+            binding.usernameEditText.text = item.username
             binding.score.text = item.score.toString()
         }
     }
