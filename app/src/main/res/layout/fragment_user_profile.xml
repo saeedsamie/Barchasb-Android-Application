@@ -157,7 +157,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/signOutButton"
+            android:id="@+id/logout_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"

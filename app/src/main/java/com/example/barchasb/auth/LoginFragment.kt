@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.barchasb.R
-import com.example.barchasb.api.ApiClient
-import com.example.barchasb.api.AuthApi
-import com.example.barchasb.api.User
 import com.example.barchasb.databinding.FragmentLoginBinding
 import kotlinx.coroutines.launch
 
@@ -20,26 +19,11 @@ class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-
-    // Create an instance of the Auth API
-    private val authApi: AuthApi by lazy { ApiClient.create<AuthApi>() }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Handle back button behavior
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                // Optional: Disable back navigation or handle custom behavior
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
-    }
+    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,7 +31,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Navigate to SignUpFragment when sign-up text is clicked
+        // Navigate to SignUpFragment
         binding.signUpRedirect.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
@@ -59,35 +43,42 @@ class LoginFragment : Fragment() {
 
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(
-                    requireContext(),
-                    "Username or password cannot be empty",
-                    Toast.LENGTH_SHORT
+                    requireContext(), "Username or password cannot be empty", Toast.LENGTH_SHORT
                 ).show()
             } else {
-                performLogin(username, password)
+                authViewModel.login(username, password)
             }
         }
+
+        // Observe login state
+        observeLoginState()
     }
 
-    private fun performLogin(username: String, password: String) {
-        lifecycleScope.launch {
-            try {
-                // Call the login API
-                val response = authApi.login(User(username, password))
-                if (response.isSuccessful) {
-                    // Navigate to DashboardFragment on success
-                    findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
-                } else {
-                    // Show error message on failure
-                    Toast.makeText(
-                        requireContext(),
-                        "Login failed: ${response.errorBody()?.string()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+    private fun observeLoginState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                authViewModel.loginState.collect { state ->
+                    when (state) {
+                        is LoginState.Idle -> {
+                            // No action needed
+                        }
+
+                        is LoginState.Loading -> {
+                            Toast.makeText(context, "Logging in...", Toast.LENGTH_SHORT).show()
+                        }
+
+                        is LoginState.Success -> {
+                            Toast.makeText(context, "Login successful", Toast.LENGTH_SHORT).show()
+                            TokenManager.saveToken(requireContext(), state.token)
+                            println("Token saved: ${state.token}")
+                            findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
+                        }
+
+                        is LoginState.Error -> {
+                            Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
-            } catch (e: Exception) {
-                // Handle network or other unexpected errors
-                Toast.makeText(requireContext(), "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
     }
