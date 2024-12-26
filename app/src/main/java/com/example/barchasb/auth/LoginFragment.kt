@@ -58,7 +58,11 @@ class LoginFragment : Fragment() {
             val password = binding.passwordEditText.text.toString().trim()
 
             if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "Username or password cannot be empty", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Username or password cannot be empty",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 performLogin(username, password)
             }
@@ -69,7 +73,7 @@ class LoginFragment : Fragment() {
         lifecycleScope.launch {
             try {
                 // Call the login API
-                val response = authApi.login(username, password)
+                val response = authApi.login(User(username, password))
                 if (response.isSuccessful) {
                     // Navigate to DashboardFragment on success
                     findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
