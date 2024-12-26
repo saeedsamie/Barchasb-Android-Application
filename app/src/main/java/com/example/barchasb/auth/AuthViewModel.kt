@@ -72,6 +72,42 @@ class AuthViewModel : ViewModel() {
         TokenManager.clearToken(context)
     }
 
+    private val _signupState = MutableStateFlow<SignupState>(SignupState.Idle)
+    val signupState: StateFlow<SignupState> get() = _signupState
+
+    fun signup(
+        username: String,
+        password: String,
+        phone: String,
+        age: String,
+        languages: String,
+        education: String
+    ) {
+        _signupState.value = SignupState.Loading
+        viewModelScope.launch {
+            try {
+                val response = authApi.signup(User(username, password))
+                if (response.isSuccessful) {
+                    _signupState.value =
+                        SignupState.Success(response.body()?.get("message") ?: "Signup successful")
+                } else {
+                    _signupState.value =
+                        SignupState.Error("Signup failed: ${response.errorBody()?.string()}")
+                }
+            } catch (e: Exception) {
+                _signupState.value = SignupState.Error("Network error: ${e.message}")
+            }
+        }
+    }
+}
+
+
+// State representation for signup
+sealed class SignupState {
+    object Idle : SignupState()
+    object Loading : SignupState()
+    data class Success(val message: String) : SignupState()
+    data class Error(val message: String) : SignupState()
 }
 
 // State representation for login

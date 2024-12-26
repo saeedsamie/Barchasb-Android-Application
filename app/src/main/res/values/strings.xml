@@ -43,6 +43,7 @@
     <string name="target_word_ocr_image_describtion">target word ocr</string>
     <string name="submit_button_text">تایید</string>
     <string name="total_score_title_string">محموع امتیازات</string>
+    <string name="repeat_password_hint">تکرار رمز عبور</string>
     <string-array name="emotion_options">
         <item>عادی</item>
         <item>ناراحت</item>
