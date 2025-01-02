@@ -1,10 +1,5 @@
 package com.example.barchasb.api
 
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-
 object ApiClient {
     //    private const val BASE_URL = "http://127.0.0.1:8000" // Updated base URL
     private const val BASE_URL = "http://65.109.219.11:8000" // Replace with your backend URL
