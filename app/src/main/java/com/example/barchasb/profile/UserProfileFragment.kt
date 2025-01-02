@@ -23,6 +23,7 @@ class UserProfileFragment : Fragment() {
     private var _binding: FragmentUserProfileBinding? = null
     private val binding get() = _binding!!
     private val authViewModel: AuthViewModel by viewModels()
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -67,6 +68,21 @@ class UserProfileFragment : Fragment() {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val token = TokenManager.getToken(requireContext()) ?: return
+        userViewModel.fetchUserProfile(token)
+
+        userViewModel.userProfile.observe(viewLifecycleOwner) { userProfile ->
+            userProfile?.let {
+                binding.userNameTextView.text = it.username
+                binding.userPointsTextView.text = it.points.toString()
+//                Glide.with(this).load(it.avatarUrl).into(binding.avatarImageView)
             }
         }
     }
