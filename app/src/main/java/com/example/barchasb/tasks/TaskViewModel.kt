@@ -1,6 +1,5 @@
 package com.example.barchasb.tasks
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,13 +16,16 @@ class TaskViewModel : ViewModel() {
     private val _tasks = MutableLiveData<List<Task>?>()
     val tasks: LiveData<List<Task>?> get() = _tasks
 
+    private val _selectedTask = MutableLiveData<Task?>()
+    val selectedTask: LiveData<Task?> get() = _selectedTask
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> get() = _error
 
-    fun fetchTasks(apiToken: String, limit: Int = 2) {
+    fun fetchTasks(apiToken: String, limit: Int = 10) {
         _isLoading.value = true
         _error.value = null
         viewModelScope.launch {
@@ -42,7 +44,12 @@ class TaskViewModel : ViewModel() {
         }
     }
 
+    fun selectTask(task: Task) {
+        _selectedTask.value = task
+    }
+
     fun clearError() {
         _error.value = null
     }
 }
+

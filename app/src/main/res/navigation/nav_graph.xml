@@ -75,7 +75,7 @@
     <fragment
         android:id="@+id/asrTaskFragment"
         android:name="com.example.barchasb.tasks.ASRTaskFragment"
-        android:label="Task Details"
+        android:label="ASR Task"
         tools:layout="@layout/fragment_asr_task">
         <action
             android:id="@+id/asrTaskFragment_to_action_taskListFragment"
@@ -99,7 +99,7 @@
         android:id="@+id/wordOcrTaskFragment"
         android:name="com.example.barchasb.tasks.WordOcrTaskFragment"
         android:label="Word OCR Task"
-        tools:layout="@layout/fragment_word_ocr_task" >
+        tools:layout="@layout/fragment_word_ocr_task">
         <action
             android:id="@+id/action_wordOcrTaskFragment_self"
             app:destination="@id/wordOcrTaskFragment" />

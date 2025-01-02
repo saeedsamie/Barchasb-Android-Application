@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.barchasb.R
@@ -20,7 +20,7 @@ class TaskListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var taskAdapter: TaskListAdapter
-    private val taskViewModel: TaskViewModel by viewModels()
+    private val taskViewModel: TaskViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,14 +46,19 @@ class TaskListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        taskAdapter = TaskListAdapter(emptyList())
+        taskAdapter = TaskListAdapter(emptyList()) { task ->
+            taskViewModel.selectTask(task) // Set the selected task in ViewModel
+            when (task.type) {
+                0 -> findNavController().navigate(R.id.action_taskListFragment_to_asrTaskFragment)
+                1 -> findNavController().navigate(R.id.action_taskListFragment_to_wordOcrTaskFragment)
+            }
+        }
+
         binding.taskRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.taskRecyclerView.adapter = taskAdapter
 
         taskViewModel.tasks.observe(viewLifecycleOwner) { tasks ->
-            tasks?.let {
-                taskAdapter.updateTasks(it)
-            }
+            tasks?.let { taskAdapter.updateTasks(it) }
         }
 
         taskViewModel.error.observe(viewLifecycleOwner) { error ->
@@ -62,6 +67,7 @@ class TaskListFragment : Fragment() {
                 taskViewModel.clearError()
             }
         }
+
         val apiToken = TokenManager.getToken(requireContext())
         if (apiToken != null) {
             taskViewModel.fetchTasks(apiToken)

@@ -11,9 +11,9 @@ import android.widget.ArrayAdapter
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.barchasb.R
-import com.example.barchasb.api.Task
 import com.example.barchasb.databinding.FragmentAsrTaskBinding
 import java.util.concurrent.TimeUnit
 
@@ -27,17 +27,21 @@ class ASRTaskFragment : Fragment() {
     private var isPlaying = false
     private var isMediaPlayerReleased = true // کنترل وضعیت آزادسازی MediaPlayer
 
+    private val taskViewModel: TaskViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAsrTaskBinding.inflate(inflater, container, false)
 
-//        val task:Task = arguments.get("task")
-//        binding.taskID.text = (task?.id ?: "شناسه ندارد").toString() // نمایش taskID
-//        binding.taskTitle.text = task?.title ?: "عنوان ندارد" // نمایش taskTitle
-//        binding.taskDescription.text =
-//            task?.description ?: "توضیحی ندارد" // نمایش taskDescription
-//        setupButtons()
+        taskViewModel.selectedTask.observe(viewLifecycleOwner) { task ->
+            if (task != null) {
+                binding.taskID.text = task.id.toString()
+                binding.taskTitle.text = task.title
+                binding.taskDescription.text = task.description
+            }
+        }
+        setupButtons()
 
         return binding.root
     }

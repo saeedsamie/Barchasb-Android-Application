@@ -9,7 +9,7 @@ import com.example.barchasb.R
 import com.example.barchasb.api.Task
 
 class TaskListAdapter(
-    private var tasks: List<Task>
+    private var tasks: List<Task>, private val onTaskClick: (Task) -> Unit
 ) : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,10 +18,11 @@ class TaskListAdapter(
         val descriptionTextView: TextView = itemView.findViewById(R.id.taskDescription)
 //        val taskTags: TextView = itemView.findViewById(R.id.task_tags)
 
-        fun bind(task: Task) {
+        fun bind(task: Task, onClick: (Task) -> Unit) {
             idTextView.text = task.id.toString()
             titleTextView.text = task.title
             descriptionTextView.text = task.description
+            itemView.setOnClickListener { onClick(task) }
         }
     }
 
@@ -31,13 +32,7 @@ class TaskListAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        val task = tasks[position]
-        holder.bind(task)
-        holder.idTextView.text = task.id.toString()
-        holder.titleTextView.text = task.title
-        holder.descriptionTextView.text = task.description
-//        holder.taskTags.text = task.tags
-//        holder.itemView.setOnClickListener { onTaskClick(task) }
+        holder.bind(tasks[position], onTaskClick)
     }
 
     override fun getItemCount() = tasks.size
