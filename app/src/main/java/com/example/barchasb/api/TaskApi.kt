@@ -1,7 +1,5 @@
 package com.example.barchasb.api
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,7 +18,10 @@ data class Task(
 )
 
 data class Submission(
-    val id: Int, val user_id: Int, val task_id: Int, val content: Map<String, Any>
+    val id: Int = System.currentTimeMillis().toInt(),
+    val user_id: Int,
+    val task_id: Int,
+    val content: Map<String, Any>
 )
 
 data class Report(val task_id: Int)

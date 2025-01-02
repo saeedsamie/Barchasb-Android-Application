@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.barchasb.api.ApiClient
+import com.example.barchasb.api.Report
+import com.example.barchasb.api.Submission
 import com.example.barchasb.api.Task
 import com.example.barchasb.api.TaskApi
 import kotlinx.coroutines.launch
@@ -40,6 +42,32 @@ class TaskViewModel : ViewModel() {
                 _error.value = e.message
             } finally {
                 _isLoading.value = false
+            }
+        }
+    }
+
+    fun submitTask(apiToken: String, submission: Submission) {
+        viewModelScope.launch {
+            try {
+                val response = taskApi.submitTask(apiToken, submission)
+                if (!response.isSuccessful) {
+                    _error.value = "Failed to submit task: ${response.message()}"
+                }
+            } catch (e: Exception) {
+                _error.value = e.message
+            }
+        }
+    }
+
+    fun reportTask(apiToken: String, report: Report) {
+        viewModelScope.launch {
+            try {
+                val response = taskApi.reportTask(apiToken, report)
+                if (!response.isSuccessful) {
+                    _error.value = "Failed to report task: ${response.message()}"
+                }
+            } catch (e: Exception) {
+                _error.value = e.message
             }
         }
     }
