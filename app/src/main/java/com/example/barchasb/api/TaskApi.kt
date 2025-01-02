@@ -1,28 +1,48 @@
 package com.example.barchasb.api
 
-import retrofit2.http.*
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.POST
+import retrofit2.http.Query
 
-data class Task(val id: Int, val title: String, val description: String, val total_labels: Int = 0)
-data class Submission(val task_id: Int, val user: String, val label: String)
+data class Task(
+    val id: Int,
+    val type: Int,
+    val data: Map<String, Any>,
+    val title: String,
+    val description: String,
+    val point: Int,
+    val tags: String
+)
 
-interface TasksApi {
-    @GET("/tasks")
-    suspend fun getTasks(): Response<List<Task>>
+data class Submission(
+    val id: Int, val user_id: Int, val task_id: Int, val content: Map<String, Any>
+)
 
-    @GET("/tasks/{task_id}")
-    suspend fun getTask(@Path("task_id") taskId: Int): Response<Task>
+data class Report(val task_id: Int)
 
-    @POST("/tasks/{task_id}/submit")
+interface TaskApi {
+    @GET("/api/v1/tasks/feed")
+    suspend fun getTaskFeed(
+        @Header("Authorization") token: String,
+        @Query("limit") limit: Int
+    ): Response<List<Task>>
+
+    @POST("/api/v1/tasks/submit")
     suspend fun submitTask(
-        @Path("task_id") taskId: Int,
+        @Header("Authorization") token: String,
         @Body submission: Submission
     ): Response<Map<String, String>>
 
-    @POST("/tasks/report")
+    @POST("/api/v1/tasks/report")
     suspend fun reportTask(
-        @Query("task_id") taskId: Int,
-        @Query("reason") reason: String
+        @Header("Authorization") token: String,
+        @Body report: Report
     ): Response<Map<String, String>>
 }
+
 

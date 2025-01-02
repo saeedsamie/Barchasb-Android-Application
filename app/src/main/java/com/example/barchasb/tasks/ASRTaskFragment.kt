@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.barchasb.R
+import com.example.barchasb.api.Task
 import com.example.barchasb.databinding.FragmentAsrTaskBinding
 import java.util.concurrent.TimeUnit
 
@@ -31,12 +32,12 @@ class ASRTaskFragment : Fragment() {
     ): View? {
         _binding = FragmentAsrTaskBinding.inflate(inflater, container, false)
 
-        val task = arguments?.getParcelable<Task>("task")
-        binding.taskID.text = task?.taskID ?: "شناسه ندارد" // نمایش taskID
-        binding.taskTitle.text = task?.taskTitle ?: "عنوان ندارد" // نمایش taskTitle
-        binding.taskDescription.text =
-            task?.taskDescription ?: "توضیحی ندارد" // نمایش taskDescription
-        setupButtons()
+//        val task:Task = arguments.get("task")
+//        binding.taskID.text = (task?.id ?: "شناسه ندارد").toString() // نمایش taskID
+//        binding.taskTitle.text = task?.title ?: "عنوان ندارد" // نمایش taskTitle
+//        binding.taskDescription.text =
+//            task?.description ?: "توضیحی ندارد" // نمایش taskDescription
+//        setupButtons()
 
         return binding.root
     }

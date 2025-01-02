@@ -1,11 +1,14 @@
 package com.example.barchasb.tasks
 
+import TokenManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.barchasb.R
@@ -16,7 +19,8 @@ class TaskListFragment : Fragment() {
     private var _binding: FragmentTaskListBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var taskListAdapter: TaskListAdapter
+    private lateinit var taskAdapter: TaskListAdapter
+    private val taskViewModel: TaskViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,70 +40,31 @@ class TaskListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentTaskListBinding.inflate(inflater, container, false)
-
-        // لیست تسک‌ها
-        val tasks = listOf(
-            Task(
-                "199123", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
-            ), Task(
-                "211",
-                "استخراج متن کلمه از تصویر",
-                "متن کلمه در تصویر را بنویسید",
-                TaskType.WORD_OCR
-            ), Task(
-                "133243", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
-            ), Task(
-                "201",
-                "استخراج متن کلمه از تصویر",
-                "متن کلمه در تصویر را بنویسید",
-                TaskType.WORD_OCR
-            ), Task(
-                "266",
-                "استخراج متن کلمه از تصویر",
-                "متن کلمه در تصویر را بنویسید",
-                TaskType.WORD_OCR
-            ), Task(
-                "266332",
-                "استخراج متن کلمه از تصویر",
-                "متن کلمه در تصویر را بنویسید",
-                TaskType.WORD_OCR
-            ), Task(
-                "264426",
-                "استخراج متن کلمه از تصویر",
-                "متن کلمه در تصویر را بنویسید",
-                TaskType.WORD_OCR
-            ), Task(
-                "111357", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
-            ), Task(
-                "135321", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
-            ), Task(
-                "152235", "تبدیل متن به صوت", "با توجه به صوت زیر متن را اصلاح کنید", TaskType.ASR
-            )
-        )
-
-        // تنظیم آداپتور
-        taskListAdapter = TaskListAdapter(tasks) { task ->
-            navigateToTask(task)
-        }
-
-        binding.taskRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.taskRecyclerView.adapter = taskListAdapter
-
         return binding.root
     }
 
-    private fun navigateToTask(task: Task) {
-        val bundle = Bundle().apply {
-            putParcelable("task", task)
-        }
-        when (task.type) {
-            TaskType.ASR -> findNavController().navigate(
-                R.id.action_taskListFragment_to_asrTaskFragment, bundle
-            )
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            TaskType.WORD_OCR -> findNavController().navigate(
-                R.id.action_taskListFragment_to_wordOcrTaskFragment, bundle
-            )
+        taskAdapter = TaskListAdapter(emptyList())
+        binding.taskRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.taskRecyclerView.adapter = taskAdapter
+
+        taskViewModel.tasks.observe(viewLifecycleOwner) { tasks ->
+            tasks?.let {
+                taskAdapter.updateTasks(it)
+            }
+        }
+
+        taskViewModel.error.observe(viewLifecycleOwner) { error ->
+            error?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                taskViewModel.clearError()
+            }
+        }
+        val apiToken = TokenManager.getToken(requireContext())
+        if (apiToken != null) {
+            taskViewModel.fetchTasks(apiToken)
         }
     }
 
