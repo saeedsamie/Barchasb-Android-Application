@@ -1,5 +1,6 @@
 package com.example.barchasb.dashboard
 
+import TokenManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,8 +49,9 @@ class DashboardFragment : Fragment() {
 
         userViewModel.userProfile.observe(viewLifecycleOwner) { userProfile ->
             userProfile?.let {
-                binding.usernameTextView.text = it.username
+                binding.usernameTextView.text = it.name
                 binding.userPointsTextView.text = it.points.toString()
+                binding.totalTaskCount.text = it.label_count.toString()
 
                 // Use Glide or similar library to load avatar
 //                Glide.with(this).load(it.avatarUrl).into(binding.avatarImageView)
@@ -60,9 +62,6 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(R.id.action_dashboardFragment_to_taskListFragment)
         }
         binding.viewAllDoneTasksButton.setOnClickListener {
-            findNavController().navigate(R.id.action_dashboardFragment_to_taskListFragment)
-        }
-        binding.viewTodayDoneTasksButton.setOnClickListener {
             findNavController().navigate(R.id.action_dashboardFragment_to_taskListFragment)
         }
 

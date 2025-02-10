@@ -38,7 +38,5 @@ interface UserApi {
 }
 
 data class UserProfile(
-//    val id: String,
-    val username: String,
-    val points: Int,
+    val id: String, val name: String, val points: Int, val label_count: Int
 )

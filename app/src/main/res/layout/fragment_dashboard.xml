@@ -92,42 +92,6 @@
                     android:textSize="24sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-        <!-- کاشی تعداد وظایف -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/viewTodayDoneTasksButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/primary_color"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:layout_constraintDimensionRatio="1:1">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintDimensionRatio="1:1">
-
-                <TextView
-                    android:id="@+id/todayTaskCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="تسک های انجام شده امروز"
-                    android:textColor="@color/text_primary_color"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="۵"
-                    android:textColor="@color/text_primary_color"
-                    android:textSize="24sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/viewAllDoneTasksButton"
@@ -148,7 +112,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/totalTaskCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="کل تسک های انجام شده"
@@ -156,6 +119,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/totalTaskCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="۵"

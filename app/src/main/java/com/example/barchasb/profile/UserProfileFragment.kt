@@ -80,8 +80,9 @@ class UserProfileFragment : Fragment() {
 
         userViewModel.userProfile.observe(viewLifecycleOwner) { userProfile ->
             userProfile?.let {
-                binding.userNameTextView.text = it.username
+                binding.userNameTextView.text = it.name
                 binding.userPointsTextView.text = it.points.toString()
+//                binding.userPointsTextView.text = it.label_count.toString()
 //                Glide.with(this).load(it.avatarUrl).into(binding.avatarImageView)
             }
         }
