@@ -9,12 +9,12 @@ import retrofit2.http.Query
 
 data class Task(
     val id: Int,
-    val type: Int,
+    val type: String,
     val data: Map<String, Any>,
     val title: String,
     val description: String,
     val point: Int,
-    val tags: String
+    val tags: List<String>
 )
 
 data class Submission(

@@ -49,8 +49,8 @@ class TaskListFragment : Fragment() {
         taskAdapter = TaskListAdapter(emptyList()) { task ->
             taskViewModel.selectTask(task) // Set the selected task in ViewModel
             when (task.type) {
-                0 -> findNavController().navigate(R.id.action_taskListFragment_to_asrTaskFragment)
-                1 -> findNavController().navigate(R.id.action_taskListFragment_to_wordOcrTaskFragment)
+                "ASR" -> findNavController().navigate(R.id.action_taskListFragment_to_asrTaskFragment)
+                "WORD_OCR" -> findNavController().navigate(R.id.action_taskListFragment_to_wordOcrTaskFragment)
             }
         }
 

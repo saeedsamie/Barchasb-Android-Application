@@ -20,8 +20,8 @@ class TaskListAdapter(
 
         fun bind(task: Task, onClick: (Task) -> Unit) {
             idTextView.text = task.id.toString()
-            titleTextView.text = task.title
-            descriptionTextView.text = task.description
+            titleTextView.text = task.type + task.title
+            descriptionTextView.text = (task.tags).toString() + task.description
             itemView.setOnClickListener { onClick(task) }
         }
     }
