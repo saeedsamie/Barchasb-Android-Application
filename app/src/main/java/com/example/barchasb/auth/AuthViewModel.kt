@@ -1,18 +1,16 @@
 package com.example.barchasb.auth
 
-import TokenManager
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.barchasb.api.ApiClient
-import com.example.barchasb.api.AuthApi
 import com.example.barchasb.api.User
+import com.example.barchasb.api.UserApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class AuthViewModel : ViewModel() {
-    private val authApi = ApiClient.create<AuthApi>()
+    private val userApi = ApiClient.create<UserApi>()
 
     // State management for login and logout
     private val _loginState = MutableStateFlow<LoginState>(LoginState.Idle)
@@ -25,7 +23,7 @@ class AuthViewModel : ViewModel() {
         _loginState.value = LoginState.Loading
         viewModelScope.launch {
             try {
-                val response = authApi.login(User(username, password))
+                val response = userApi.login(User(username, password))
                 if (response.isSuccessful) {
                     val tokenResponse = response.body()
                     val apiToken = tokenResponse?.access_token.orEmpty()
@@ -42,36 +40,6 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun logout(apiToken: String) {
-        _logoutState.value = LogoutState.Loading
-        viewModelScope.launch {
-            try {
-                val response = authApi.logout("Bearer $apiToken")
-                println("LOGOUT API TOKEN $apiToken")
-                if (response.isSuccessful) {
-                    _logoutState.value = LogoutState.Success
-                } else {
-                    _logoutState.value =
-                        LogoutState.Error("Logout failed: ${response.errorBody()?.string()}")
-                }
-            } catch (e: Exception) {
-                _logoutState.value = LogoutState.Error("Network error: ${e.message}")
-            }
-        }
-    }
-
-    fun saveToken(context: Context, token: String) {
-        TokenManager.saveToken(context, token)
-    }
-
-    fun getToken(context: Context): String? {
-        return TokenManager.getToken(context)
-    }
-
-    fun clearToken(context: Context) {
-        TokenManager.clearToken(context)
-    }
-
     private val _signupState = MutableStateFlow<SignupState>(SignupState.Idle)
     val signupState: StateFlow<SignupState> get() = _signupState
 
@@ -86,7 +54,7 @@ class AuthViewModel : ViewModel() {
         _signupState.value = SignupState.Loading
         viewModelScope.launch {
             try {
-                val response = authApi.signup(User(username, password))
+                val response = userApi.signup(User(username, password))
                 if (response.isSuccessful) {
                     _signupState.value =
                         SignupState.Success(response.body()?.get("message") ?: "Signup successful")

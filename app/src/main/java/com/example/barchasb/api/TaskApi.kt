@@ -27,19 +27,19 @@ data class Submission(
 data class Report(val task_id: Int)
 
 interface TaskApi {
-    @GET("/api/v1/tasks/feed")
+    @GET("tasks/feed")
     suspend fun getTaskFeed(
         @Header("Authorization") token: String,
         @Query("limit") limit: Int
     ): Response<List<Task>>
 
-    @POST("/api/v1/tasks/submit")
+    @POST("tasks/submit")
     suspend fun submitTask(
         @Header("Authorization") token: String,
         @Body submission: Submission
     ): Response<Map<String, String>>
 
-    @POST("/api/v1/tasks/report")
+    @POST("tasks/report")
     suspend fun reportTask(
         @Header("Authorization") token: String,
         @Body report: Report

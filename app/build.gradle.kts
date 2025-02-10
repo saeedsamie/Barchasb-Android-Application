@@ -4,10 +4,11 @@ plugins {
     id("kotlin-parcelize")
 }
 
-
 android {
     namespace = "com.example.barchasb"
     compileSdk = 35
+
+    android.buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "com.example.barchasb"
@@ -20,12 +21,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_URL", "\"http://barchasb.bz91.ir:8000/api/v1/\"")
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
+            buildConfigField("String", "API_URL", "\"http://barchasb.bz91.ir:8000/api/v1/\"")
         }
     }
     compileOptions {

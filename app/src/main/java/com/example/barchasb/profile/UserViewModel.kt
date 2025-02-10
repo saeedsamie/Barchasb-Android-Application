@@ -15,7 +15,7 @@ class UserViewModel : ViewModel() {
 
     fun fetchUserProfile(token: String) {
         viewModelScope.launch {
-            val response = ApiClient.create<UserApi>().getUserProfile("Bearer $token")
+            val response = ApiClient.create<UserApi>().getUserInfo("Bearer $token")
             if (response.isSuccessful) {
                 _userProfile.postValue(response.body())
             } else {

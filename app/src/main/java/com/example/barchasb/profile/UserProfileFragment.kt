@@ -88,9 +88,7 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun performLogout() {
-        val apiToken = TokenManager.getToken(requireContext())
-        println("Token saved: $apiToken")
-        authViewModel.logout(apiToken.toString())
+        TokenManager.saveToken(requireContext(), "")
     }
 
     override fun onDestroyView() {

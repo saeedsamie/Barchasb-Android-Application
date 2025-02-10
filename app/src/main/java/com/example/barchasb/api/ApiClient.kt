@@ -1,9 +1,8 @@
 package com.example.barchasb.api
 
-object ApiClient {
-    //    private const val BASE_URL = "http://127.0.0.1:8000" // Updated base URL
-    private const val BASE_URL = "http://65.109.219.11:8000" // Replace with your backend URL
+import com.example.barchasb.BuildConfig
 
+object ApiClient {
 
     private val loggingInterceptor = okhttp3.logging.HttpLoggingInterceptor().apply {
         level = okhttp3.logging.HttpLoggingInterceptor.Level.BODY
@@ -12,7 +11,7 @@ object ApiClient {
     private val httpClient =
         okhttp3.OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
 
-    val retrofit: retrofit2.Retrofit = retrofit2.Retrofit.Builder().baseUrl(BASE_URL)
+    val retrofit: retrofit2.Retrofit = retrofit2.Retrofit.Builder().baseUrl(BuildConfig.API_URL)
         .addConverterFactory(retrofit2.converter.gson.GsonConverterFactory.create())
         .client(httpClient).build()
 
