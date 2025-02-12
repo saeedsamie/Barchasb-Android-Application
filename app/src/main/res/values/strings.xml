@@ -45,6 +45,7 @@
     <string name="total_score_title_string">محموع امتیازات</string>
     <string name="repeat_password_hint">تکرار رمز عبور</string>
     <string name="task_tags_template">فوری\n</string>
+    <string name="username_1_labels_count">4</string>
     <string-array name="emotion_options">
         <item>عادی</item>
         <item>ناراحت</item>

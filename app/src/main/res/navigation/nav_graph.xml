@@ -91,8 +91,13 @@
         android:label="Leaderboard"
         tools:layout="@layout/fragment_leaderboard">
         <action
-            android:id="@+id/leaderboardFragment_to_action_dashboardFragment"
+            android:id="@+id/action_leaderboardFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_leaderboardFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

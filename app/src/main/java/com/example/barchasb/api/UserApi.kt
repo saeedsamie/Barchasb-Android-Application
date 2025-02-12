@@ -16,6 +16,13 @@ data class TokenResponse(
 data class UpdateUserRequest(val new_name: String?)
 data class UpdatePasswordRequest(val new_password: String)
 
+data class LeaderboardEntry(
+    val id: String,
+    val name: String,
+    val points: Int,
+    val labeled_count: Int
+)
+
 interface UserApi {
     @POST("users/signup")
     suspend fun signup(@Body user: User): Response<Map<String, String>>
@@ -35,6 +42,11 @@ interface UserApi {
     suspend fun updatePassword(
         @Header("Authorization") token: String, @Body updatePasswordRequest: UpdatePasswordRequest
     ): Response<Map<String, String>>
+
+    @GET("users/leaderboard")
+    suspend fun getLeaderboard(
+        @Header("Authorization") token: String
+    ): Response<List<LeaderboardEntry>>
 }
 
 data class UserProfile(
