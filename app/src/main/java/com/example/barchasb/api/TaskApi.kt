@@ -6,10 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
+import java.util.UUID
 
 data class Task(
-    val status: String,
-    val task_id: Int,
+    val id: UUID,
     val type: String,
     val data: Map<String, Any>,
     val point: Int,
@@ -18,21 +18,14 @@ data class Task(
     val tags: List<String>
 )
 
-data class Submission(
-    val task_id: Int,
-    val user_id: Int,
+data class Label(
+    val task_id: UUID,
     val content: Any
 )
 
 data class Report(
-    val task_id: Int,
-    val user_id: Int,
+    val task_id: UUID,
     val detail: String = "Reported by user"
-)
-
-data class TaskResponse(
-    val status: String,
-    val task_id: Int
 )
 
 interface TaskApi {
@@ -45,7 +38,7 @@ interface TaskApi {
     @POST("tasks/submit")
     suspend fun submitTask(
         @Header("Authorization") token: String,
-        @Body submission: Submission
+        @Body label: Label
     ): Response<Map<String, String>>
 
     @POST("tasks/report")

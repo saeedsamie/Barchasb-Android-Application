@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.barchasb.api.ApiClient
 import com.example.barchasb.api.Report
-import com.example.barchasb.api.Submission
+import com.example.barchasb.api.Label
 import com.example.barchasb.api.Task
 import com.example.barchasb.api.TaskApi
 import kotlinx.coroutines.launch
@@ -46,10 +46,10 @@ class TaskViewModel : ViewModel() {
         }
     }
 
-    fun submitTask(apiToken: String, submission: Submission) {
+    fun submitTask(apiToken: String, label: Label) {
         viewModelScope.launch {
             try {
-                val response = taskApi.submitTask(apiToken, submission)
+                val response = taskApi.submitTask(apiToken, label)
                 if (!response.isSuccessful) {
                     _error.value = "Failed to submit task: ${response.message()}"
                 }

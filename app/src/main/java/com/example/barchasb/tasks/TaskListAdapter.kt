@@ -13,12 +13,12 @@ class TaskListAdapter(
 ) : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val idTextView: TextView = itemView.findViewById(R.id.taskPoint)
+        val pointTextView: TextView = itemView.findViewById(R.id.taskPoint)
         val titleTextView: TextView = itemView.findViewById(R.id.taskTitle)
         val taskTags: TextView = itemView.findViewById(R.id.taskTags)
 
         fun bind(task: Task, onClick: (Task) -> Unit) {
-            idTextView.text = "${task.point}"
+            pointTextView.text = "${task.point}"
             titleTextView.text = task.title
             taskTags.text = task.tags.joinToString(", ")
             itemView.setOnClickListener { onClick(task) }

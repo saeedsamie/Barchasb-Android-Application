@@ -1,5 +1,6 @@
 package com.example.barchasb.tasks
 
+import TokenManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.barchasb.R
+import com.example.barchasb.api.Report
+import com.example.barchasb.api.Label
+import com.example.barchasb.api.Task
 import com.example.barchasb.databinding.FragmentWordOcrTaskBinding
 
 class WordOcrTaskFragment : Fragment() {
@@ -32,25 +36,31 @@ class WordOcrTaskFragment : Fragment() {
 
         binding.submitButton.setOnClickListener {
             val inputText = binding.wordOcrEditText.text.toString()
+
             if (inputText.isNotBlank()) {
-//                val submission = Submission(
-//                    user_id = 1,
-//                    task_id = taskViewModel.selectedTask.value!!.id,
-//                    content = mapOf("recognized_word" to inputText)
-//                )
-//                val token = TokenManager.getToken(requireContext())
-//                taskViewModel.submitTask("Bearer $token", submission)
-                Toast.makeText(context, "Submitted!", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_wordOcrTaskFragment_to_taskListFragment)
+                val task: Task? = taskViewModel.selectedTask.value
+                if (task != null) {
+                    val label = Label(
+                        task_id = task.id,
+                        content = mapOf("recognized_word" to inputText)
+                    )
+                    val token = TokenManager.getToken(requireContext())
+                    taskViewModel.submitTask("Bearer $token", label)
+                    Toast.makeText(context, "Submitted!", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_wordOcrTaskFragment_to_taskListFragment)
+                }
             }
         }
 
         binding.reportTaskButton.setOnClickListener {
-            val task = taskViewModel.selectedTask.value
+            val task: Task? = taskViewModel.selectedTask.value
             if (task != null) {
-//                val report = Report(task.id)
-//                val token = TokenManager.getToken(requireContext())
-//                taskViewModel.reportTask("Bearer $token", report)
+                val report = Report(
+                    task_id = task.id,
+                    detail = "Problem in Task"
+                )
+                val token = TokenManager.getToken(requireContext())
+                taskViewModel.reportTask("Bearer $token", report)
                 Toast.makeText(context, "Reported!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_wordOcrTaskFragment_to_taskListFragment)
             }
