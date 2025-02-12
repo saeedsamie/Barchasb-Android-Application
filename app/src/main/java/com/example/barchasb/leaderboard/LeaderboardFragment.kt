@@ -17,7 +17,7 @@ class LeaderboardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLeaderboardBinding.inflate(inflater, container, false)
 
         val users = listOf(

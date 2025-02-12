@@ -1,6 +1,5 @@
 package com.example.barchasb.tasks
 
-import TokenManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -15,8 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.barchasb.R
-import com.example.barchasb.api.Report
-import com.example.barchasb.api.Submission
 import com.example.barchasb.databinding.FragmentAsrTaskBinding
 import java.util.concurrent.TimeUnit
 
@@ -39,7 +36,7 @@ class ASRTaskFragment : Fragment() {
 
         taskViewModel.selectedTask.observe(viewLifecycleOwner) { task ->
             if (task != null) {
-                binding.taskID.text = task.id.toString()
+                binding.taskPoint.text = "${task.point}"
                 binding.taskTitle.text = task.title
                 binding.taskDescription.text = task.description
             }
@@ -48,13 +45,13 @@ class ASRTaskFragment : Fragment() {
         binding.submitButton.setOnClickListener {
             val inputText = binding.editableText.text.toString()
             if (inputText.isNotBlank()) {
-                val submission = Submission(
-                    user_id = 1,
-                    task_id = taskViewModel.selectedTask.value!!.id,
-                    content = mapOf("transcription" to inputText)
-                )
-                val token = TokenManager.getToken(requireContext())
-                taskViewModel.submitTask("Bearer $token", submission)
+//                val submission = Submission(
+//                    user_id = 1,
+//                    task_id = taskViewModel.selectedTask.value!!.id,
+//                    content = mapOf("transcription" to inputText)
+//                )
+//                val token = TokenManager.getToken(requireContext())
+//                taskViewModel.submitTask("Bearer $token", submission)
                 Toast.makeText(context, "Submitted!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.asrTaskFragment_to_action_taskListFragment)
             }
@@ -63,9 +60,9 @@ class ASRTaskFragment : Fragment() {
         binding.reportTaskButton.setOnClickListener {
             val task = taskViewModel.selectedTask.value
             if (task != null) {
-                val report = Report(task.id)
-                val token = TokenManager.getToken(requireContext())
-                taskViewModel.reportTask("Bearer $token", report)
+//                val report = Report(task.id)
+//                val token = TokenManager.getToken(requireContext())
+//                taskViewModel.reportTask("Bearer $token", report)
                 Toast.makeText(context, "Reported!", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.asrTaskFragment_to_action_taskListFragment)
             }

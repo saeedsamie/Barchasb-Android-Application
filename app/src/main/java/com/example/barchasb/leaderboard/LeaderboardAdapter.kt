@@ -20,7 +20,8 @@ class LeaderboardAdapter(private val leaderboardItems: List<LeaderboardItem>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeaderboardViewHolder {
-        val binding = ItemLeaderboardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemLeaderboardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LeaderboardViewHolder(binding)
     }
 

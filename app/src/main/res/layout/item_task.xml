@@ -6,36 +6,51 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary_color"
-        android:gravity="end"
-        android:orientation="vertical"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/taskID"
+            android:id="@+id/taskPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/taskTitle"
             android:text="@string/task_ID_template"
             android:textColor="@color/text_primary_color"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/taskTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="@string/task_title_template"
             android:textColor="@color/text_primary_color"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/taskDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:text="@string/task_description_template"
+            android:id="@+id/taskTags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:text="@string/task_tags_template"
             android:textColor="@color/text_primary_color"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -8,23 +8,32 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 data class Task(
-    val id: Int,
+    val status: String,
+    val task_id: Int,
     val type: String,
     val data: Map<String, Any>,
+    val point: Int,
     val title: String,
     val description: String,
-    val point: Int,
     val tags: List<String>
 )
 
 data class Submission(
-    val id: Int = System.currentTimeMillis().toInt(),
-    val user_id: Int,
     val task_id: Int,
-    val content: Map<String, Any>
+    val user_id: Int,
+    val content: Any
 )
 
-data class Report(val task_id: Int)
+data class Report(
+    val task_id: Int,
+    val user_id: Int,
+    val detail: String = "Reported by user"
+)
+
+data class TaskResponse(
+    val status: String,
+    val task_id: Int
+)
 
 interface TaskApi {
     @GET("tasks/feed")
